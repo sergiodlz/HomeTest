@@ -14,6 +14,8 @@ namespace HomeTest.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             new ProductConfiguration("Product", "ProductId").Map(modelBuilder);
+
+            base.OnModelCreating(modelBuilder);
         }
     }
 }
