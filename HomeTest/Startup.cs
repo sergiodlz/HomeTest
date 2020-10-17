@@ -1,4 +1,5 @@
 using HomeTest.Data;
+using HomeTest.Services.Configurations;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -26,6 +27,9 @@ namespace HomeTest
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            services.ConfigureDI();
+
             services.AddControllersWithViews();
             services.AddRazorPages();
         }
@@ -56,7 +60,7 @@ namespace HomeTest
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Products}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
         }

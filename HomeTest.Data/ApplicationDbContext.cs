@@ -1,4 +1,5 @@
 ﻿using HomeTest.Data.Configurations;
+using HomeTest.Data.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,6 +11,8 @@ namespace HomeTest.Data
             : base(options)
         {
         }
+
+        public DbSet<Product> Products { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
