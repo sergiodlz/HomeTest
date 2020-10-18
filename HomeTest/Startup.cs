@@ -3,6 +3,9 @@ using HomeTest.Services.Configurations;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -45,7 +48,10 @@ namespace HomeTest
                 app.UseHsts();
             }
 
-            _context.Database.EnsureCreated();
+            if (!_context.Database.GetService<IRelationalDatabaseCreator>().Exists())
+            {
+                _context.Database.Migrate();
+            }
 
             app.UseCors(x => x
                 .AllowAnyOrigin()
