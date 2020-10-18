@@ -5,7 +5,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
 <div class="row">
     <div class="col"><h4>Products</h4></div>
 </div>
@@ -14,7 +13,7 @@
 </div>
 <div class="row">
     <div class="col">
-        <table class="table table-bordered" id="productTable">
+        <table class="table table-bordered responsive" id="productTable">
             <thead>
                 <tr>
                     <th>
@@ -43,7 +42,7 @@
                             @Html.DisplayFor(modelItem => item.Quantity)
                         </td>
                         <td>
-                            <a asp-action="Edit" asp-route-id="@item.Id" title="Edit"><i data-feather="edit"></i></a> <span class="d-sm-none">|</span>
+                            <a asp-action="Edit" asp-route-id="@item.Id" title="Edit"><i data-feather="edit"></i></a>
                             <a asp-action="Delete" asp-route-id="@item.Id" title="Delete"><i data-feather="trash-2"></i></a>
                         </td>
                     </tr>
@@ -61,8 +60,8 @@
                 autoWidth: false,
                 columns: [
                     { "width": "30%", responsivePriority: 0 },
-                    { "width": "50%", responsivePriority: 2 },
-                    { "width": "10%", responsivePriority: 1 },
+                    { "width": "50%", responsivePriority: 10 },
+                    { "width": "10%", responsivePriority: 5 },
                     { "width": "10%", responsivePriority: 0 }
                 ],
                 lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "All"]]
