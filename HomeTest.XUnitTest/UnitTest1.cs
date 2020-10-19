@@ -19,7 +19,6 @@ namespace HomeTest.XUnitTest
 
             using (var context = new ApplicationDbContext(options))
             {
-                // 1. Arrange
                 var product = new Product
                 {
                     Id = Guid.NewGuid(),
@@ -29,7 +28,6 @@ namespace HomeTest.XUnitTest
                     Enable = true
                 };
 
-                // 2. Act 
                 var _productService = new EntityService<Product>(context);
                 await _productService.CreateAsync(product);
             }
@@ -39,7 +37,6 @@ namespace HomeTest.XUnitTest
                 var _productService = new EntityService<Product>(context);
                 var result = await _productService.FindByConditionAsync(p => p.Enable);
 
-                // 3. Assert
                 Assert.NotEmpty(result);
                 Assert.Single(result);
                 Assert.NotEmpty(result.First().Name);
@@ -68,7 +65,6 @@ namespace HomeTest.XUnitTest
                     Enable = true
                 };
 
-                // 2. Act 
                 var _productService = new EntityService<Product>(context);
                 await _productService.CreateAsync(product);
             }
@@ -78,7 +74,6 @@ namespace HomeTest.XUnitTest
                 var _productService = new EntityService<Product>(context);
                 var result = await _productService.GetByIdAsync(id);
 
-                // 3. Assert
                 Assert.NotNull(result);
                 Assert.NotEmpty(result.Name);
                 Assert.Equal(expectedName, result.Name);
@@ -96,7 +91,6 @@ namespace HomeTest.XUnitTest
 
             using (var context = new ApplicationDbContext(options))
             {
-                // 1. Arrange
                 var product = new Product
                 {
                     Id = id,
@@ -106,7 +100,6 @@ namespace HomeTest.XUnitTest
                     Enable = true
                 };
 
-                // 2. Act 
                 var _productService = new EntityService<Product>(context);
                 await _productService.CreateAsync(product);
             }
@@ -124,7 +117,6 @@ namespace HomeTest.XUnitTest
                 var _productService = new EntityService<Product>(context);
                 var result = await _productService.UpdateAsync(productUpdated);
 
-                // 3. Assert
                 Assert.NotNull(result);
                 Assert.NotEmpty(result.Name);
                 Assert.Equal(expectedName, result.Name);
@@ -149,7 +141,6 @@ namespace HomeTest.XUnitTest
                 Enable = true
             };
 
-
             using (var context = new ApplicationDbContext(options))
             {
                 var _productService = new EntityService<Product>(context);
@@ -163,7 +154,6 @@ namespace HomeTest.XUnitTest
                 var result = await _productService.FindByConditionAsync(p => p.Enable);
                 var result1 = await _productService.GetAllAsync();
 
-                // 3. Assert
                 Assert.Empty(result);
                 Assert.NotEmpty(result1);
                 Assert.Equal(expectedName, result1.First().Name);
